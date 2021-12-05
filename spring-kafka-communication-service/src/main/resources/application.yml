@@ -1,0 +1,18 @@
+spring:
+  kafka:
+    bootstrap-servers:
+    - localhost:9092
+    consumer:
+      client-id: my-client-consumer
+      group-id: spring-application-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: com.amrut.prabhu.kafkacommunicationservice.dto.converters.MessageDeSerializer
+    producer:
+      client-id: my-client-application
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: com.amrut.prabhu.kafkacommunicationservice.dto.converters.MessageSerializer
+        
+topic:
+  name: "first-topic"
+server:
+  port: 9191
