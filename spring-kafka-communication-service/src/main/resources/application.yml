@@ -13,6 +13,6 @@ spring:
       value-serializer: com.amrut.prabhu.kafkacommunicationservice.dto.converters.MessageSerializer
         
 topic:
-  name: "first-topic"
+  name: "transaction.000"
 server:
   port: 9191
