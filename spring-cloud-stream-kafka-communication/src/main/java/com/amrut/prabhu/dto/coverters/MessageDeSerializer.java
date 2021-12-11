@@ -14,7 +14,6 @@ public class MessageDeSerializer implements Deserializer<Message> {
     @Override
     public Message deserialize(String topic, byte[] data) {
         try {
-
             return objectMapper.readValue(new String(data), Message.class);
         } catch (IOException e) {
             throw new SerializationException(e);
