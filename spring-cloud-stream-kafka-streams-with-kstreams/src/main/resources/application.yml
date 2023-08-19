@@ -1,0 +1,62 @@
+spring:
+  cloud:
+    function:
+      definition: producer;enhancer;aggregate;join
+    stream:
+      kafka:
+        streams:
+          bindings:
+#            enhancer-in-0:              #   only required if you need to provide some configurations.
+#              consumer:
+#                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#                valueSerde: com.amrut.prabhu.dto.coverters.Message2SerDes   #custom
+#            enhancer-out-0:           #   only required if you need to provide some configurations.
+#              producer:
+#                configuration:
+#                  spring.json.add.type.headers: false
+            aggregate-in-0:
+              producer:
+                configuration:
+#                  spring.json.add.type.headers: false
+                  commit.interval.ms: 2000
+            join-in-0:
+              consumer:
+                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                valueSerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#
+            join-out-0:
+              producer:
+                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                valueSerde: com.amrut.prabhu.dto.coverters.JoinedValueSerDes
+          binder:
+            configuration:
+              commit.interval.ms: 2000 # to allow the stream to send the message as soon as possible and not wait
+
+
+#          binder:
+#            brokers: localhost:9092
+        bindings:
+          producer-out-0:
+            producer:
+              configuration:
+                key.serializer: org.apache.kafka.common.serialization.StringSerializer
+      bindings:
+        producer-out-0:
+          destination: first-topic
+
+        enhancer-in-0:
+          destination: first-topic
+        enhancer-out-0:
+          destination: second-topic
+#
+        aggregate-in-0:
+          destination: first-topic
+        aggregate-out-0:
+          destination: third-topic
+
+        join-in-0:
+          destination: second-topic
+        join-in-1:
+          destination: third-topic
+        join-out-0:
+          destination: fourth-topic
