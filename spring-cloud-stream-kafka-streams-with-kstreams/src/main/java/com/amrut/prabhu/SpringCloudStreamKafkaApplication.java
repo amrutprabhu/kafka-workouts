@@ -1,5 +1,7 @@
 package com.amrut.prabhu;
 
+import com.amrut.prabhu.dto.Department;
+import com.amrut.prabhu.dto.JoinedValue;
 import com.amrut.prabhu.dto.MyEvent;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KeyValue;
@@ -9,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.support.MessageBuilder;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;

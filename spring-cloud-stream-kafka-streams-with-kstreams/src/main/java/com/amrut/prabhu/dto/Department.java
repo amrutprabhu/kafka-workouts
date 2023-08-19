@@ -1,4 +1,4 @@
-package com.amrut.prabhu;
+package com.amrut.prabhu.dto;
 
 public enum Department {
     TECH, BUSINESS, FINANCE, PRODUCT
