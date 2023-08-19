@@ -20,7 +20,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 @SpringBootApplication
-//@EnableScheduling
 public class SpringCloudStreamKafkaApplication {
 
     public static void main(String[] args) {
@@ -50,7 +49,7 @@ public class SpringCloudStreamKafkaApplication {
     @Bean
     public Function<KStream<String, MyEvent>, KStream<String, String>> aggregate() {
         return input -> input
-                .peek((key, value) -> System.out.println("Aggregate->" + key + " " + value))
+                //.peek((key, value) -> System.out.println("Aggregate->" + key + " " + value))
                 .groupByKey()
                 .windowedBy(TimeWindows.ofSizeWithNoGrace(Duration.ofSeconds(10)))
                 .aggregate(() -> 0l,
