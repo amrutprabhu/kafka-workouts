@@ -30,7 +30,7 @@ public class SpringCloudStreamKafkaApplication {
     public Supplier<org.springframework.messaging.Message<MyEvent>> producer() {
         return () -> {
             Department department = Department.values()[new Random().nextInt(Department.values().length)];
-            MyEvent myEvent = new MyEvent("Jack", Department.TECH);
+            MyEvent myEvent = new MyEvent("Jack", department);
             return MessageBuilder.withPayload(myEvent)
                     .setHeader(KafkaHeaders.KEY, department.name())
                     .build();
